@@ -1,0 +1,66 @@
+<div class="container mt-5">
+  <form [formGroup]="configurationForm" (ngSubmit)="onSubmit()">
+    <!-- Total Number of Tickets -->
+    <div class="mb-3">
+      <label for="totalNumberOfTickets" class="form-label">Total Number of Tickets</label>
+      <input
+        id="totalNumberOfTickets"
+        formControlName="totalNumberOfTickets"
+        type="number"
+        class="form-control"
+        placeholder="Enter total number of tickets"
+      />
+      <div class="invalid-feedback d-block" *ngIf="configurationForm.get('totalNumberOfTickets')?.invalid && configurationForm.get('totalNumberOfTickets')?.touched">
+        Please enter a valid number
+      </div>
+    </div>
+
+    <!-- Ticket Release Rate -->
+    <div class="mb-3">
+      <label for="ticketReleaseRate" class="form-label">Ticket Release Rate</label>
+      <input
+        id="ticketReleaseRate"
+        formControlName="ticketReleaseRate"
+        type="number"
+        class="form-control"
+        placeholder="Enter ticket release rate"
+      />
+      <div class="invalid-feedback d-block" *ngIf="configurationForm.get('ticketReleaseRate')?.invalid && configurationForm.get('ticketReleaseRate')?.touched">
+        Please enter a valid number
+      </div>
+    </div>
+
+    <!-- Customer Retrieval Rate -->
+    <div class="mb-3">
+      <label for="customerRetrievalRate" class="form-label">Customer Retrieval Rate</label>
+      <input
+        id="customerRetrievalRate"
+        formControlName="customerRetrievalRate"
+        type="number"
+        class="form-control"
+        placeholder="Enter customer retrieval rate"
+      />
+      <div class="invalid-feedback d-block" *ngIf="configurationForm.get('customerRetrievalRate')?.invalid && configurationForm.get('customerRetrievalRate')?.touched">
+        Please enter a valid number
+      </div>
+    </div>
+
+    <!-- Maximum Ticket Capacity -->
+    <div class="mb-3">
+      <label for="maximumTicketCapacity" class="form-label">Maximum Ticket Capacity</label>
+      <input
+        id="maximumTicketCapacity"
+        formControlName="maximumTicketCapacity"
+        type="number"
+        class="form-control"
+        placeholder="Enter maximum ticket capacity"
+      />
+      <div class="invalid-feedback d-block" *ngIf="configurationForm.get('maximumTicketCapacity')?.invalid && configurationForm.get('maximumTicketCapacity')?.touched">
+        Please enter a valid number
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="configurationForm.invalid">Submit</button>
+  </form>
+</div>
