@@ -1,24 +1,26 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {ConfigurationService} from '../../service/configuration-service/configuration-service.service';
-import {Configuration} from '../../model/configuration';
+import { HttpClientModule } from '@angular/common/http';
+import { ConfigurationService } from '../../service/configuration-service/configuration-service.service';
+import { Configuration } from '../../model/configuration';
 
 @Component({
   selector: 'app-configurations-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './configuration-form.component.html',
   styleUrls: ['./configuration-form.component.css'],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule], // Ensure CommonModule and ReactiveFormsModule are included here
   providers: [ConfigurationService],
 })
 export class ConfigurationFormComponent {
   configurationForm: FormGroup;
+  notificationMessage: string | null = null;
+  notificationType: string = 'success';
 
   constructor(
     private fb: FormBuilder,
-    private configService: ConfigurationService // Inject the service
+    private configService: ConfigurationService
   ) {
     this.configurationForm = this.fb.group({
       totalNumberOfTickets: [null, [Validators.required, Validators.min(0)]],
@@ -33,14 +35,22 @@ export class ConfigurationFormComponent {
       const config: Configuration = this.configurationForm.value;
       this.configService.addConfiguration(config).subscribe(
         (response) => {
-          console.log('Configuration saved successfully:', response);
+          this.notificationMessage = response;
+          this.notificationType = 'success';
+          this.configurationForm.reset();
         },
         (error) => {
-          console.error('Error saving configuration:', error);
+          this.notificationMessage = 'Error saving configuration';
+          this.notificationType = 'danger';
+          console.error('Error:', error);
         }
       );
     } else {
       console.error('Form is invalid');
     }
+  }
+
+  clearNotification(): void {
+    this.notificationMessage = null;
   }
 }

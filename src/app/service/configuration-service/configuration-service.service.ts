@@ -11,8 +11,9 @@ export class ConfigurationService {
 
   constructor(private http: HttpClient) {}
 
-  addConfiguration(config: Configuration): Observable<any> {
-    return this.http.post(this.apiUrl, config);
+  addConfiguration(config: Configuration): Observable<string> {
+    return this.http.post(this.apiUrl, config, { responseType: 'text' });
   }
+
 }
 
