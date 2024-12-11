@@ -1,8 +1,8 @@
-import { Routes } from '@angular/router';
-import { ConfigurationFormComponent } from './module/configurations/components/configuration-form/configuration-form.component';
-import {AppComponent} from './app.component';
+import {Routes} from '@angular/router';
+import {ConfigurationFormComponent} from './component/configuration-form/configuration-form.component';
+import {ExecutionPanelComponent} from './component/execution-panel/execution-panel.component';
 
 export const routes: Routes = [
-  { path: '', component: AppComponent },
   { path: 'configuration', component: ConfigurationFormComponent },
+  { path: 'execution', component: ExecutionPanelComponent },
 ];

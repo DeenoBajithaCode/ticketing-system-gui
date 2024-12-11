@@ -1,0 +1,17 @@
+<div class="container">
+  <!-- Buttons for Execution -->
+  <div class="d-flex justify-content-start mb-3">
+    <button class="btn btn-success me-2" (click)="startExecution()">Start</button>
+    <button class="btn btn-danger" (click)="stopExecution()">Stop</button>
+  </div>
+
+  <!-- Log Panel -->
+  <div class="border p-3" style="height: 300px; overflow-y: scroll; background-color: #f8f9fa;">
+    <h5>Logs</h5>
+    <ul class="list-unstyled">
+      <li *ngFor="let log of logs">
+        <span class="text-muted">- {{ log }}</span>
+      </li>
+    </ul>
+  </div>
+</div>
